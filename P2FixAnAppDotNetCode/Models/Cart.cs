@@ -97,7 +97,9 @@ namespace P2FixAnAppDotNetCode.Models
             int nombreArticles = 0;
             for (int i = 0; i < cartLines.Count; i++)
                 nombreArticles += cartLines[i].Quantity;
-            prixMoyenChaqueArticle = GetTotalValue() / nombreArticles;
+
+            if (nombreArticles > 0)
+                prixMoyenChaqueArticle = GetTotalValue() / nombreArticles;
             return prixMoyenChaqueArticle;
             //return 0.0;
         }
