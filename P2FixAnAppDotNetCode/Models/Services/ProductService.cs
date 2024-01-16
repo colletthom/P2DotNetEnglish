@@ -58,6 +58,8 @@ namespace P2FixAnAppDotNetCode.Models.Services
             {
                 _productRepository.UpdateProductStocks(cart.cartLines[i].Product.Id, cart.cartLines[i].Quantity);
             }
+            //var a = _productRepository; //test pour vérifier que le stock baisse
+            //var b = _productRepository;
             // update product inventory by using _productRepository.UpdateProductStocks() method.
         }
     }
