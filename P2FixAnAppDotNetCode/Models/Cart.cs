@@ -17,9 +17,17 @@ namespace P2FixAnAppDotNetCode.Models
         /// Return the actual cartline list
         /// </summary>
         /// <returns></returns>
+        private List<CartLine> cartLines;
         private List<CartLine> GetCartLineList()
         {
-            return new List<CartLine>();
+
+            //return new List<CartLine>();
+            /* jai modifié cette méthode car elle réinitialiser toujours à 0 la commande*/
+            if (cartLines == null)
+            {
+                cartLines = new List<CartLine>();
+            }
+            return cartLines;
         }
 
         /// <summary>
@@ -28,7 +36,21 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // TODO implement the method
+
+            int nombreDeProduitsDejaCommande = cartLines.Count;
+            /*for (int i = 0; i < nombreDeProduitsDejaCommande; i++)
+                var a = cartLines(i);*/
+
+            CartLine line = new CartLine
+            {
+                OrderLineId = nombreDeProduitsDejaCommande,
+                Product = product,
+                Quantity = quantity
+            };
+            cartLines.Add(line);
+            
         }
+
 
         /// <summary>
         /// Removes a product form the cart
