@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace P2FixAnAppDotNetCode.Models
@@ -35,20 +36,35 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>//
         public void AddItem(Product product, int quantity)
         {
-            // TODO implement the method
+            // DONE implement the method
 
             int nombreDeProduitsDejaCommande = cartLines.Count;
-            /*for (int i = 0; i < nombreDeProduitsDejaCommande; i++)
-                var a = cartLines(i);*/
+            bool produitPresent = false;
+            int indexProduitPesent=0;
 
-            CartLine line = new CartLine
+            for (int i = 0; i < nombreDeProduitsDejaCommande; i++)
             {
-                OrderLineId = nombreDeProduitsDejaCommande,
-                Product = product,
-                Quantity = quantity
-            };
-            cartLines.Add(line);
-            
+                if (cartLines[i].Product.Id == product.Id)
+                {
+                    produitPresent = true;
+                    indexProduitPesent = i;
+                }
+            }
+
+            if (produitPresent == true)
+            {
+                cartLines[indexProduitPesent].Quantity += 1;
+            }
+            else
+            {
+                CartLine line = new CartLine
+                {
+                    OrderLineId = nombreDeProduitsDejaCommande,
+                    Product = product,
+                    Quantity = quantity
+                };
+                cartLines.Add(line);
+            }   
         }
 
 
