@@ -32,7 +32,15 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public Product GetProductById(int id)
         {
             // TODO implement the method
-            return null;
+            var tableauDesProduits = GetAllProducts();
+            Product result = null;
+            for (int i = 0; i < tableauDesProduits.Length; i++)
+            {
+                if (tableauDesProduits[i].Id == id)
+                    result = tableauDesProduits[i];
+            }
+            return result;
+            //return null;
         }
 
         /// <summary>
