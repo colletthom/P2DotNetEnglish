@@ -93,7 +93,13 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
-            return 0.0;
+            double prixMoyenChaqueArticle = 0.00;
+            int nombreArticles = 0;
+            for (int i = 0; i < cartLines.Count; i++)
+                nombreArticles += cartLines[i].Quantity;
+            prixMoyenChaqueArticle = GetTotalValue() / nombreArticles;
+            return prixMoyenChaqueArticle;
+            //return 0.0;
         }
 
         /// <summary>
