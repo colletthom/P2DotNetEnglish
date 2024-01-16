@@ -1,4 +1,6 @@
 ﻿using P2FixAnAppDotNetCode.Models.Repositories;
+using Remotion.Linq.Parsing.Structure.NodeTypeProviders;
+using System.Linq;
 
 namespace P2FixAnAppDotNetCode.Models.Services
 {
@@ -48,7 +50,12 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public void UpdateProductQuantities(Cart cart)
         {
-            // TODO implement the method
+            // DONE implement the method
+            
+            for (int i = 0; i< cart.cartLines.Count(); i++)
+            {
+                _productRepository.UpdateProductStocks(cart.cartLines[i].Product.Id, cart.cartLines[i].Quantity);
+            }
             // update product inventory by using _productRepository.UpdateProductStocks() method.
         }
     }
