@@ -79,7 +79,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetTotalValue()
         {
-            // TODO implement the method
+            // DONE implement the method
             double totalCommande = 0;
             for (int i = 0; i<cartLines.Count; i++)
                 totalCommande += (cartLines[i].Product.Price * cartLines[i].Quantity);
@@ -92,7 +92,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetAverageValue()
         {
-            // TODO implement the method
+            // DONE implement the method
             double prixMoyenChaqueArticle = 0.00;
             int nombreArticles = 0;
             for (int i = 0; i < cartLines.Count; i++)
@@ -108,7 +108,16 @@ namespace P2FixAnAppDotNetCode.Models
         public Product FindProductInCartLines(int productId)
         {
             // TODO implement the method
-            return null;
+            Product produitDontIdTrouve = null;
+            for (int i = 0; i < cartLines.Count; i++)
+            {
+                if (cartLines[i].Product.Id == productId)
+                {
+                    produitDontIdTrouve = cartLines[i].Product;
+                    break;
+                }
+            }
+            return produitDontIdTrouve;
         }
 
         /// <summary>
