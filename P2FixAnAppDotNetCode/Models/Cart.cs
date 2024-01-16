@@ -80,7 +80,11 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetTotalValue()
         {
             // TODO implement the method
-            return 0.0;
+            double totalCommande = 0;
+            for (int i = 0; i<cartLines.Count; i++)
+                totalCommande += (cartLines[i].Product.Price * cartLines[i].Quantity);
+            return totalCommande;
+            //return 0.0;
         }
 
         /// <summary>
