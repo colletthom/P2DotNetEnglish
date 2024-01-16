@@ -1,6 +1,7 @@
 ﻿using P2FixAnAppDotNetCode.Models.Repositories;
 using Remotion.Linq.Parsing.Structure.NodeTypeProviders;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace P2FixAnAppDotNetCode.Models.Services
 {
@@ -21,11 +22,12 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// <summary>
         /// Get all product from the inventory
         /// </summary>
-        public Product[] GetAllProducts()
+        //public Product[] GetAllProducts()
+        public List<Product> GetAllProducts()
         {
             // TODO change the return type from array to List<T> and propagate the change
             // thoughout the application
-            return _productRepository.GetAllProducts();
+            return _productRepository.GetAllProducts().ToList();
         }
 
         /// <summary>
@@ -34,12 +36,12 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public Product GetProductById(int id)
         {
             // DONE implement the method
-            var tableauDesProduits = GetAllProducts();
+            var listeDesProduits = GetAllProducts();
             Product result = null;
-            for (int i = 0; i < tableauDesProduits.Length; i++)
+            for (int i = 0; i < listeDesProduits.Count; i++)
             {
-                if (tableauDesProduits[i].Id == id)
-                    result = tableauDesProduits[i];
+                if (listeDesProduits[i].Id == id)
+                    result = listeDesProduits[i];
             }
             return result;
             //return null;
