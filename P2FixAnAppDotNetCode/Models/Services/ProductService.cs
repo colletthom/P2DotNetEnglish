@@ -2,6 +2,7 @@
 using Remotion.Linq.Parsing.Structure.NodeTypeProviders;
 using System.Linq;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace P2FixAnAppDotNetCode.Models.Services
 {
@@ -36,12 +37,15 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public Product GetProductById(int id)
         {
             // DONE implement the method
-            var listeDesProduits = GetAllProducts();
+            var productList = GetAllProducts();
             Product result = null;
-            for (int i = 0; i < listeDesProduits.Count; i++)
+            for (int i = 0; i < productList.Count; i++)
             {
-                if (listeDesProduits[i].Id == id)
-                    result = listeDesProduits[i];
+                if (productList[i].Id == id)
+                {
+                    result = productList[i];
+                    break;
+                }
             }
             return result;
             //return null;
@@ -58,8 +62,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
             {
                 _productRepository.UpdateProductStocks(cart.cartLines[i].Product.Id, cart.cartLines[i].Quantity);
             }
-            //var a = _productRepository; //test pour vérifier que le stock baisse
-            //var b = _productRepository;
+            //var a = _productRepository; //test to check that the stock is falling
             // update product inventory by using _productRepository.UpdateProductStocks() method.
         }
     }

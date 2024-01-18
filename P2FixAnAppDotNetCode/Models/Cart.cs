@@ -17,13 +17,13 @@ namespace P2FixAnAppDotNetCode.Models
         /// <summary>
         /// Return the actual cartline list
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return the actual cartline list, type: List</returns>
         public List<CartLine> cartLines;
         private List<CartLine> GetCartLineList()
         {
 
             //return new List<CartLine>();
-            /* jai modifié cette méthode car elle réinitialiser toujours à 0 la commande*/
+            /* I modified this method because it always resets the command to 0*/
             if (cartLines == null)
             {
                 cartLines = new List<CartLine>();
@@ -38,28 +38,28 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // DONE implement the method
 
-            int nombreDeProduitsDejaCommande = cartLines.Count;
-            bool produitPresent = false;
-            int indexProduitPesent=0;
+            int numberProductAlreadyOrdered = cartLines.Count;
+            bool productPresent = false;
+            int productIndexPesent=0;
 
-            for (int i = 0; i < nombreDeProduitsDejaCommande; i++)
+            for (int i = 0; i < numberProductAlreadyOrdered; i++)
             {
                 if (cartLines[i].Product.Id == product.Id)
                 {
-                    produitPresent = true;
-                    indexProduitPesent = i;
+                    productPresent = true;
+                    productIndexPesent = i;
                 }
             }
 
-            if (produitPresent == true)
+            if (productPresent == true)
             {
-                cartLines[indexProduitPesent].Quantity += 1;
+                cartLines[productIndexPesent].Quantity += 1;
             }
             else
             {
                 CartLine line = new CartLine
                 {
-                    OrderLineId = nombreDeProduitsDejaCommande,
+                    OrderLineId = numberProductAlreadyOrdered,
                     Product = product,
                     Quantity = quantity
                 };
@@ -80,10 +80,10 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetTotalValue()
         {
             // DONE implement the method
-            double totalCommande = 0;
+            double totalOrder = 0;
             for (int i = 0; i<cartLines.Count; i++)
-                totalCommande += (cartLines[i].Product.Price * cartLines[i].Quantity);
-            return totalCommande;
+                totalOrder += (cartLines[i].Product.Price * cartLines[i].Quantity);
+            return totalOrder;
             //return 0.0;
         }
 
@@ -93,14 +93,14 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // DONE implement the method
-            double prixMoyenChaqueArticle = 0.00;
-            int nombreArticles = 0;
+            double averagePriceEachItem = 0.00;
+            int numberItems = 0;
             for (int i = 0; i < cartLines.Count; i++)
-                nombreArticles += cartLines[i].Quantity;
+                numberItems += cartLines[i].Quantity;
 
-            if (nombreArticles > 0)
-                prixMoyenChaqueArticle = GetTotalValue() / nombreArticles;
-            return prixMoyenChaqueArticle;
+            if (numberItems > 0)
+                averagePriceEachItem = GetTotalValue() / numberItems;
+            return averagePriceEachItem;
             //return 0.0;
         }
 
@@ -110,16 +110,16 @@ namespace P2FixAnAppDotNetCode.Models
         public Product FindProductInCartLines(int productId)
         {
             // DONE implement the method
-            Product produitDontIdTrouve = null;
+            Product productWhoseIdFound = null;
             for (int i = 0; i < cartLines.Count; i++)
             {
                 if (cartLines[i].Product.Id == productId)
                 {
-                    produitDontIdTrouve = cartLines[i].Product;
+                    productWhoseIdFound = cartLines[i].Product;
                     break;
                 }
             }
-            return produitDontIdTrouve;
+            return productWhoseIdFound;
         }
 
         /// <summary>
